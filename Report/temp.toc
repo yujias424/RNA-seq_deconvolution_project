@@ -1,0 +1,13 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}%
+\contentsline {section}{\numberline {2}Method}{2}%
+\contentsline {subsection}{\numberline {2.1}Implementation}{2}%
+\contentsline {subsection}{\numberline {2.2}Design of signature matrix and simulated bulk data}{2}%
+\contentsline {subsection}{\numberline {2.3}Marker genes selection}{2}%
+\contentsline {subsection}{\numberline {2.4}Weighted least square}{2}%
+\contentsline {subsection}{\numberline {2.5}Noise model}{3}%
+\contentsline {subsection}{\numberline {2.6}Creation of noise variance matrix}{4}%
+\contentsline {subsection}{\numberline {2.7}Iteratively reweighted least square}{4}%
+\contentsline {section}{\numberline {3}Results}{5}%
+\contentsline {subsection}{\numberline {3.1}Shannxi}{5}%
+\contentsline {subsection}{\numberline {3.2}}{5}%
