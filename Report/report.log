@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.16)  18 JUN 2020 23:02
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.6.16)  19 JUN 2020 09:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/yujiashi/Documents/IndependentStudy/RNA-seq_deconvolution_project/Report/temp
-(/Users/yujiashi/Documents/IndependentStudy/RNA-seq_deconvolution_project/Report/temp.tex
+**/Users/yujiashi/Documents/IndependentStudy/RNA-seq_deconvolution_project/Report/report
+(/Users/yujiashi/Documents/IndependentStudy/RNA-seq_deconvolution_project/Report/report.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-03> (/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -197,8 +197,8 @@ File: l3backend-xdvipdfmx.def 2020-06-03 L3 backend support: xdvipdfmx
 \l__pdf_internal_box=\box46
 \g__pdf_backend_object_int=\count186
 \g__pdf_backend_annotation_int=\count187
-) (./temp.aux)
-\openout1 = `temp.aux'.
+) (./report.aux)
+\openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
@@ -247,9 +247,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 27.
 LaTeX Info: Redefining \pageref on input line 27.
 LaTeX Info: Redefining \nameref on input line 27.
- (./temp.out) (./temp.out)
+ (./report.out) (./report.out)
 \@outlinefile=\write3
-\openout3 = `temp.out'.
+\openout3 = `report.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 29.
@@ -257,14 +257,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 29.
- (./temp.toc
+ (./report.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 4.
 )
 \tf@toc=\write4
-\openout4 = `temp.toc'.
+\openout4 = `report.toc'.
 
  (/usr/local/texlive/2020/texmf-dist/tex/generic/stringenc/se-ascii-print.def
 File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
@@ -273,24 +273,24 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 ] [2]
 File: Var_Mean_model.png Graphic file (type bmp)
 <Var_Mean_model.png>
- [3] [4] [5] (./temp.bbl)
+ [3] [4] [5] (./report.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
  [6]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
- (./temp.aux)
+ (./report.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 197.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
-Package rerunfilecheck Info: File `temp.out' has not changed.
+Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D4B56FC5BDB5830AD66525A6FD31D4C6;1107.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 9235 strings out of 479284
- 135769 string characters out of 5880516
- 405966 words of memory out of 5000000
+ 9236 strings out of 479284
+ 135815 string characters out of 5880516
+ 405976 words of memory out of 5000000
  26762 multiletter control sequences out of 15000+600000
  535498 words of font info for 42 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 34i,6n,45p,320b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,6n,45p,322b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on temp.pdf (6 pages).
+Output written on report.pdf (6 pages).
