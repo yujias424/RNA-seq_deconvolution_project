@@ -7,9 +7,9 @@
 \contentsline {subsection}{\numberline {2.4}Weighted least square}{2}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Noise model}{3}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Creation of noise variance matrix}{4}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Iteratively reweighted least square}{4}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.7}Iteratively reweighted least square}{5}{subsection.2.7}%
 \contentsline {section}{\numberline {3}Results}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Learned model function based IRLS performs better than other mainstream methods}{5}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Correct estimation of noise variance leads to a better result}{5}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Discussion}{6}{section.4}%
-\contentsline {section}{References}{6}{section*.2}%
+\contentsline {section}{\numberline {4}Discussion}{7}{section.4}%
+\contentsline {section}{References}{7}{section*.5}%
