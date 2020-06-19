@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Method}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Implementation}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Design\040of\040signature\040matrix\040and\040simulated\040bulk\040data}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Marker\040genes\040selection}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Weighted\040least\040square}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Noise\040model}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Creation\040of\040noise\040variance\040matrix}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.7}{Iteratively\040reweighted\040least\040square}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{Results}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Learned\040model\040function\040based\040IRLS\040performs\040better\040than\040other\040mainstream\040methods}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Correct\040estimation\040of\040noise\040variance\040leads\040to\040a\040better\040result}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 13
+\BOOKMARK [1][-]{section*.2}{References}{}% 14

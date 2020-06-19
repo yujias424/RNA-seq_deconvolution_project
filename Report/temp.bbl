@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{gong2013deconrnaseq}
+Ting Gong and Joseph~D Szustakowski.
+\newblock Deconrnaseq: a statistical framework for deconvolution of
+  heterogeneous tissue samples based on mrna-seq data.
+\newblock {\em Bioinformatics}, 29(8):1083--1085, 2013.
+
+\bibitem{hunt2019dtangle}
+Gregory~J Hunt, Saskia Freytag, Melanie Bahlo, and Johann~A Gagnon-Bartsch.
+\newblock dtangle: accurate and robust cell type deconvolution.
+\newblock {\em Bioinformatics}, 35(12):2093--2099, 2019.
+
+\bibitem{newman2015robust}
+Aaron~M Newman, Chih~Long Liu, Michael~R Green, Andrew~J Gentles, Weiguo Feng,
+  Yue Xu, Chuong~D Hoang, Maximilian Diehn, and Ash~A Alizadeh.
+\newblock Robust enumeration of cell subsets from tissue expression profiles.
+\newblock {\em Nature methods}, 12(5):453--457, 2015.
+
+\bibitem{bernstein2017metasra}
+Matthew~N Bernstein, AnHai Doan, and Colin~N Dewey.
+\newblock Metasra: normalized human sample-specific metadata for the sequence
+  read archive.
+\newblock {\em Bioinformatics}, 33(18):2914--2923, 2017.
+
+\bibitem{chen2014gene}
+Chien-Ming Chen, Yu-Lun Lu, Chi-Pong Sio, Guan-Chung Wu, Wen-Shyong Tzou, and
+  Tun-Wen Pai.
+\newblock Gene ontology based housekeeping gene selection for rna-seq
+  normalization.
+\newblock {\em Methods}, 67(3):354--363, 2014.
+
+\end{thebibliography}
