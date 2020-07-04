@@ -219,89 +219,6 @@ def deconrnaseqweightIRLS(datasets, signatures, checksig = False, deconMethod = 
 
     return [out_all,weightMatrix,replaceCount,histexp]
 
-def buildweightmatrix(data, signature, avgexplist, varexplist, 
-                      use_scale = False, weightedApproach = "CVd", provideTM = None, add_one = False, proportion = None):
-    '''
-    data, signature: already loaded in deconWeight, in numpy array, and order is setted
-                     up, that is data_subdata, signaturenp, avgexplist, varexplist
-    Possible Approach:
-    Cvd: model noise with parameter CV * datapoint
-    datapoint
-    '''
-    
-    avgexplist = np.average(signature, axis=1)
-    weightedUse = []
-    
-    BB = data
-
-    if use_scale:
-        BB = preprocessing.scale(BB)
-
-    # Transform data into log space
-    tempBB = list(BB)
-    for i in range(len(tempBB)):
-        if tempBB[i] == 0:
-            tempBB[i] = avgexplist[i]
-    tempBB = np.array(tempBB)
-    if add_one == True:
-        logBB = np.log(tempBB+1) #Need +1 Here?
-    else:
-        logBB = np.log(tempBB)
-    
-    # Applied the given training model
-    if weightedApproach == 'CVd':
-        if provideTM != None:
-            tempBB = list(BB)
-            for i in range(len(logBB)):
-                if tempBB[i] != 0:
-                    tempBB[i] = math.exp(provideTM(logBB[i]))*tempBB[i]
-                else:
-                    tempBB[i] = math.exp(provideTM(logBB[i]))*avgexplist[i]
-            tempBB = np.array(tempBB)
-            weightedUse = 1/tempBB
-        else:
-            return "Please provide the required training model."
-    elif weightedApproach == 'CV':
-        if provideTM != None:
-            tempBB = list(BB)
-            for i in range(len(logBB)):
-                if tempBB[i] != 0:
-                    tempBB[i] = math.exp(provideTM(logBB[i]))*tempBB[i]
-                else:
-                    tempBB[i] = math.exp(provideTM(logBB[i]))*avgexplist[i]
-            tempBB = np.array(tempBB)
-            weightedUse = 1/tempBB
-        else:
-            return "Please provide the required training model."
-    elif weightedApproach == 'normal':
-        weightedUse = [1] * len(list(BB))
-        weightedUse = np.array(weightedUse)
-    elif weightedApproach == 'std':
-        weightedUse = 1/np.array(varexplist+1)
-    elif weightedApproach == 'std_prop':
-        weightedUse = 1/(np.matmul(np.square(proportion), varexplist)+1)
-    elif weightedApproach == 'datapoint':
-        tempBB += 1
-        weightedUse = 1/tempBB
-    elif weightedApproach == 'datapoint_cv':
-        tmp_BB_exp = tempBB*varexplist
-        weightedUse = 1/(tmp_BB_exp+1)
-    elif weightedApproach == 'Estimate_std':
-        if provideTM != None:
-            tempBB = list(BB)
-            for i in range(len(logBB)):
-                estimate_log_std = provideTM(logBB[i])
-                if estimate_log_std <= 700: # Solve the Overflow issue
-                    tempBB[i] = math.exp(estimate_log_std)
-                else:
-                    tempBB[i] = math.exp(700)
-            tempBB = np.array(tempBB)
-            weightedUse = 1/np.square(tempBB)
-        else:
-            return "Please provide the required training model."
-    
-    return weightedUse
-
 def deconrnaseqweight(datasets, signatures, checksig = False, deconMethod = 'CVd',
             use_scale = False, addone = False, ProvideTM = None, true_std = None, L2_lamb = 0.1,
                       drop_low = False, olrZero = False, drop_gene = False, threshold = 0, L2_reg=False):
@@ -433,6 +350,116 @@ def deconrnaseqweight(datasets, signatures, checksig = False, deconMethod = 'CVd
     out_all[out_all<tol] = 0.0 # Eliminate the near 0 count
 
     return [out_all,weightMatrix,replaceCount,histexp]
+
+def irls(data, signature, method, iter_num):
+    # This function is the main irls pipeline function
+    # data: data to be deconvoluted
+    # signature: reference (signature) matrix
+    # iter_num: number of iteration
+    # method: deconvolution weighted method, default: datapoint 
+    
+    
+    # Initial with the NNLS result.
+    proportion_start = deconrnaseqweight(data, signature, true_std = None
+                                        , deconMethod = 'normal', ProvideTM = None
+                                        , addone = True, drop_low = True, olrZero=True)[0][0]
+    
+    for q in range(iter_num):
+        proportion_start1 = proportion_start
+        proportion_start = deconrnaseqweightIRLS(data, signature, true_std = None
+                                    , deconMethod = 'datapoint', ProvideTM = None
+                                    , addone = True, drop_low = True, olrZero = False
+                                    , drop_gene=False, threshold=0, Proportion=np.array(proportion_start1))[0][0]
+
+    result = deconrnaseqweightIRLS(data, signature, true_std = None
+                                        , deconMethod = 'datapoint', ProvideTM = None
+                                        , addone = True, drop_low = True, olrZero = False
+                                        , drop_gene=False, threshold=0, Proportion=proportion_start)[0][0]
+
+    return result
+
+def buildweightmatrix(data, signature, avgexplist, varexplist, 
+                      use_scale = False, weightedApproach = "CVd", provideTM = None, add_one = False, proportion = None):
+    '''
+    data, signature: already loaded in deconWeight, in numpy array, and order is setted
+                     up, that is data_subdata, signaturenp, avgexplist, varexplist
+    Possible Approach:
+    Cvd: model noise with parameter CV * datapoint
+    datapoint
+    '''
+    
+    avgexplist = np.average(signature, axis=1)
+    weightedUse = []
+    
+    BB = data
+
+    if use_scale:
+        BB = preprocessing.scale(BB)
+
+    # Transform data into log space
+    tempBB = list(BB)
+    for i in range(len(tempBB)):
+        if tempBB[i] == 0:
+            tempBB[i] = avgexplist[i]
+    tempBB = np.array(tempBB)
+    if add_one == True:
+        logBB = np.log(tempBB+1) #Need +1 Here?
+    else:
+        logBB = np.log(tempBB)
+    
+    # Applied the given training model
+    if weightedApproach == 'CVd':
+        if provideTM != None:
+            tempBB = list(BB)
+            for i in range(len(logBB)):
+                if tempBB[i] != 0:
+                    tempBB[i] = math.exp(provideTM(logBB[i]))*tempBB[i]
+                else:
+                    tempBB[i] = math.exp(provideTM(logBB[i]))*avgexplist[i]
+            tempBB = np.array(tempBB)
+            weightedUse = 1/tempBB
+        else:
+            return "Please provide the required training model."
+    elif weightedApproach == 'CV':
+        if provideTM != None:
+            tempBB = list(BB)
+            for i in range(len(logBB)):
+                if tempBB[i] != 0:
+                    tempBB[i] = math.exp(provideTM(logBB[i]))*tempBB[i]
+                else:
+                    tempBB[i] = math.exp(provideTM(logBB[i]))*avgexplist[i]
+            tempBB = np.array(tempBB)
+            weightedUse = 1/tempBB
+        else:
+            return "Please provide the required training model."
+    elif weightedApproach == 'normal':
+        weightedUse = [1] * len(list(BB))
+        weightedUse = np.array(weightedUse)
+    elif weightedApproach == 'std':
+        weightedUse = 1/np.array(varexplist+1)
+    elif weightedApproach == 'std_prop':
+        weightedUse = 1/(np.matmul(np.square(proportion), varexplist)+1)
+    elif weightedApproach == 'datapoint':
+        tempBB += 1
+        weightedUse = 1/tempBB
+    elif weightedApproach == 'datapoint_cv':
+        tmp_BB_exp = tempBB*varexplist
+        weightedUse = 1/(tmp_BB_exp+1)
+    elif weightedApproach == 'Estimate_std':
+        if provideTM != None:
+            tempBB = list(BB)
+            for i in range(len(logBB)):
+                estimate_log_std = provideTM(logBB[i])
+                if estimate_log_std <= 700: # Solve the Overflow issue
+                    tempBB[i] = math.exp(estimate_log_std)
+                else:
+                    tempBB[i] = math.exp(700)
+            tempBB = np.array(tempBB)
+            weightedUse = 1/np.square(tempBB)
+        else:
+            return "Please provide the required training model."
+    
+    return weightedUse
 
 def variance_matrix(observed_data, signature, estimated_proportion):
     # This function is to calculate the new variance matrix based on the provided data set.
